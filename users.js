@@ -1,11 +1,21 @@
-
 export const checkLS = (displayUserName) =>{
-    if(localStorage.getItem('user') === ''){
+    if(localStorage.getItem('user') === null){
         displayUserName.textContent = 'Log in'
       }
       else if (localStorage.getItem('user') !== ''){
         displayUserName.innerHTML = `Hi, <span id="log-in-name">${localStorage.getItem('user')}</span> `
       }
+}
+
+const alertLogin = ()=>{
+  document.getElementById('alert-bck').style.display = 'grid';
+  document.getElementById('alert-cancel').addEventListener('click', ()=>{
+    document.getElementById('alert-bck').style.display = 'none';
+  })
+  document.getElementById('alert-yes').addEventListener('click', ()=>{
+    document.getElementById('alert-bck').style.display = 'none';
+    document.getElementById('sign-up-bck').style.display = 'grid';
+  })
 }
 
 export const logInNewUser = (displayUserName) => {
@@ -26,7 +36,6 @@ export const logInNewUser = (displayUserName) => {
                 localStorage.setItem("user", `${obj.userName}`);
                 user = localStorage.getItem('user');
                 displayUserName.innerHTML = `Hi, <span id="log-in-name">${user}</span>`;
-
             } 
             else {
                 console.log('wrong pass')
@@ -36,7 +45,7 @@ export const logInNewUser = (displayUserName) => {
         } 
         else {
           console.log("No such document!");
-          //modal za create acc
+          alertLogin()
         }
       })
       .catch(function(error) {
@@ -51,4 +60,6 @@ export const signOutUser = (displayUserName)=>{
         localStorage.setItem('user', '');        
     }
 }
+
+// create new acount
 

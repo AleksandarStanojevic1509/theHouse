@@ -14,6 +14,7 @@ let renderCardsToStore = (data, mainBox) => {
 
 export let renderStorePage = (loader, mainBox) => {
   loader.style.display = "block";
+
   if (mainBox.innerText !== "") {
     if (document.body.children[6].innerHTML === "Store") {
       // console.log("ccc");
@@ -26,7 +27,7 @@ export let renderStorePage = (loader, mainBox) => {
       "beforebegin",
       '<h1 id="store-title">Store</h1>'
     );
-    db.collection("test")
+    db.collection("products")
       .get()
       .then((data) => {
         loader.style.display = "none";
@@ -36,7 +37,7 @@ export let renderStorePage = (loader, mainBox) => {
 };
 
 export let renederProductModal = (mainBox) => {
-  db.collection("test")
+  db.collection("products")
     .get()
     .then((data) => {
       data.docs.forEach((doc) => {
@@ -46,7 +47,7 @@ export let renederProductModal = (mainBox) => {
           mainBox.innerHTML += `<div id="product-card">
                 <h5 id="product-close">+</h5>
                 <div id="product-img">
-                    <img src="/img/ex-02.jpg" alt="...">
+                    <img src="${obj.url}" alt="...">
                 </div>
                 <div id="product-info">
                     <h1>${obj.name}</h1>
@@ -54,7 +55,7 @@ export let renederProductModal = (mainBox) => {
                     <div id="info">
                         <p>INFO:</p>
                         <p>${obj.info}</p>
-                        <p>Dimension: ${obj.dimension.width} m x ${obj.dimension.height} m x ${obj.dimension.depth} m</p>
+                        <p>Dimension: ${obj.dimension.width} cm x ${obj.dimension.height} cm x ${obj.dimension.depth} cm</p>
                     </div>
                     <div id="product-btn">
                         <button><i class="fas fa-heart"></i></button>

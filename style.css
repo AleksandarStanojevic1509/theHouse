@@ -9,6 +9,8 @@ body {
   position: relative;
 }
 .format-store{
+  min-height: 800px;
+  /* height: 90vh; */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -36,6 +38,10 @@ body {
 .format-store a {
   margin: 0 0 5px 0;
   padding: 5px;
+}
+.card{
+  height: 20rem !important;
+
 }
 #store-title{
   text-align: center;
@@ -94,6 +100,16 @@ main {
   font-weight: 900;
   padding: 0 0.5rem !important;
 }
+#log-in-bck, #alert-bck, #sign-up-bck{
+  background-color:  #c4c4c494;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  display: none;
+}
 #log-in {
   left: 0;
   right: 0;
@@ -108,18 +124,76 @@ main {
   z-index: 10000;
   margin-top: 5rem;
   /* border-radius: 0.5rem; */
-  display: none; /*grid*/
+  display: grid; /*grid*/
   grid-template-rows: 1fr 6fr 9fr 4fr;
 }
-#log-in > i {
+#alert-log-in{
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  background-color: rgb(228, 228, 228);
+  width: 20rem;
+  height: 8rem;
+  margin: 0 auto;
+  z-index: 10000;
+  margin-top: 5rem;  
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#alert-log-in>div{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+}
+#alert-log-in button{
+  background: none;
+  background-color: var(--primary-color);
+  border: none;
+  padding: 0 5px;
+}
+#alert-log-in button:hover{
+  cursor: pointer;
+}
+
+#log-in > i{
   text-align: end;
   font-size: 1.5rem;
   margin-top: 5px;
   margin-right: 8px;
-  color: var(--primary-color);
+  color: var(--primary-color);  
 }
-#log-in > i:hover {
+/* #alert-log-in  > i{
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 1.3rem;
+  margin-top: 5px;
+  margin-right: 8px;
+  color: var(--primary-color);  
+} */
+/* #log-in > i:hover {
 cursor: pointer;
+} */
+#sign-up{
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  background-color: rgb(228, 228, 228);
+  width: 20rem;
+  height: 20rem;
+  margin: 0 auto;
+  z-index: 10000;
+  margin-top: 5rem;  
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 #avatar {
   margin: auto !important;

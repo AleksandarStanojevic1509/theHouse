@@ -8,7 +8,7 @@ const mainBox = document.querySelector("main");
 const loader = document.querySelector("#loader");
 const ftrCardHandler = document.querySelectorAll(".ftr-card a");
 const logInHandler = document.getElementById('log-in-box');
-const logIn = document.getElementById('log-in');
+// const logIn = document.getElementById('log-in-bck');
 const logInCloseHandler = document.querySelector('.fa-times');
 const logInForm = document.querySelector('#log-in form')
 const signOut = document.getElementById('sign-out-box')
@@ -22,7 +22,7 @@ logInForm.addEventListener('submit', (event)=>{
   event.preventDefault();
   logInNewUser(displayUserName)  
   logInForm.reset()
-  logIn.style.display = 'none'
+  document.getElementById('log-in-bck').style.display = 'none'
 })
 
 signOut.addEventListener('click', ()=>{
@@ -30,14 +30,12 @@ signOut.addEventListener('click', ()=>{
 } )
 
 logInHandler.addEventListener('click', ()=>{
-  logIn.style.display = 'grid'
+  document.getElementById('log-in-bck').style.display = 'grid'
 })
 
 logInCloseHandler.addEventListener('click', ()=>{
-  logIn.style.display = 'none'
+  document.getElementById('log-in-bck').style.display = 'none'
 })
-
-
 
 storageHendler.forEach((event) => {
   event.addEventListener("click", (e) => {
@@ -50,7 +48,6 @@ ftrCardHandler.forEach((event) => {
     renderStorePage(loader, mainBox);
   });
 });
-
 
 mainBox.addEventListener ('click', event =>{
   if(event.target.tagName === 'A'){
@@ -73,3 +70,53 @@ document.addEventListener("scroll", (event) => {
     toTopHendler.style.display = "none";
   }
 });
+
+// add to Cart or add to Wishlist
+  mainBox.addEventListener('click', (event =>{
+  
+    if (event.target.outerHTML === '<i class="fas fa-shopping-bag"></i>'){
+      // if(){
+        // proveri da li je neko logovan ako je localstore prazan izbaci log in
+      // }
+      // else {
+        // ako je loginovan dodaj u korpu
+      // }
+      console.log('KORPA')
+    }
+    if (event.target.outerHTML === '<i class="fas fa-heart"></i>'){
+       // if(){
+        // proveri da li je neko logovan ako je localstore prazan izbaci log in
+      // }
+      // else {
+        // ako je loginovan dodaj u litu zelja
+      // }
+      console.log('LISTA ZELAJ')
+    }
+    
+  }))
+
+
+// sign up 
+document.querySelector('#sign-up form').addEventListener('submit', (event)=>{
+  event.preventDefault()
+  let userName = document.getElementById('username')
+
+  db.collection('users').doc().set({
+    user:userName.value
+  })
+  document.querySelector('#sign-up form').reset()
+})
+
+// db.collection('products').doc().set({
+//   dimension:{
+//     depth: 65,
+//     height: 130,
+//     width: 103
+//   },
+//   info:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate molestiae deleniti sed, distinctio iste eius iure, voluptates qui commodi ut ratione non dolor molestias eaque iusto quis quas natus saepe?',
+//   name:'Dean',
+//   price: 611.99,
+//   quantity: 15,
+//   sku:'DJH342',
+//   url:'https://firebasestorage.googleapis.com/v0/b/thehouse-b0245.appspot.com/o/img%2Fin-08.jpg?alt=media&token=dcd12ea8-29cc-4d76-9d69-36f3d47c7deb'
+// })
