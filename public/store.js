@@ -18,7 +18,7 @@ export let renderStorePage = (loader, mainBox) => {
   if (mainBox.innerText !== "") {
     if (document.body.children[6].innerHTML === "Store") {
       // console.log("ccc");
-      document.body.children[6].remove();
+      document.body.children[6].innerHTML === '';
     }
     //   console.log(document.body.children);
     mainBox.innerText = "";

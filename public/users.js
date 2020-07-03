@@ -56,6 +56,7 @@ export const logInNewUser = (displayUserName) => {
 
 export const signOutUser = (displayUserName)=>{
     if (displayUserName.textContent !== 'Log in'){
+      // alert logout box cancel or yes (yes) onda ovo odole
         displayUserName.textContent = 'Log in';
         localStorage.setItem('user', '');        
     }
@@ -63,3 +64,12 @@ export const signOutUser = (displayUserName)=>{
 
 // create new acount
 
+export const signUp = (event)=>{
+  event.preventDefault()
+  let userName = document.getElementById('username')
+
+  db.collection('users').doc().set({
+    user:userName.value
+  })
+  document.querySelector('#sign-up form').reset()
+}

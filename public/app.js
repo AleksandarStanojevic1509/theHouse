@@ -1,5 +1,5 @@
 import { renderStorePage, renederProductModal } from "./store.js";
-import {logInNewUser, signOutUser, checkLS} from "./users.js"
+import {logInNewUser, signOutUser, checkLS, signUp} from "./users.js"
 
 //DOM
 const toTopHendler = document.getElementById("to-top");
@@ -30,6 +30,7 @@ signOut.addEventListener('click', ()=>{
 } )
 
 logInHandler.addEventListener('click', ()=>{
+  window.scrollTo(0, 0); 
   document.getElementById('log-in-bck').style.display = 'grid'
 })
 
@@ -39,6 +40,8 @@ logInCloseHandler.addEventListener('click', ()=>{
 
 storageHendler.forEach((event) => {
   event.addEventListener("click", (e) => {
+    // document.getElementById('store-title').innerHTML = ''
+    window.scrollTo(0, 0); 
     renderStorePage(loader, mainBox);
   });
 });
@@ -97,15 +100,9 @@ document.addEventListener("scroll", (event) => {
 
 
 // sign up 
-document.querySelector('#sign-up form').addEventListener('submit', (event)=>{
-  event.preventDefault()
-  let userName = document.getElementById('username')
+document.querySelector('#sign-up form').addEventListener('submit', signUp)
 
-  db.collection('users').doc().set({
-    user:userName.value
-  })
-  document.querySelector('#sign-up form').reset()
-})
+
 
 // db.collection('products').doc().set({
 //   dimension:{
