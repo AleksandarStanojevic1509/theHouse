@@ -29,7 +29,7 @@
             <form>
               <input type="text" name="" id="log-in-user" placeholder="Username">
               <input type="password" name="" id="log-in-pass" placeholder="Password">
-              <input class="bg-info" type="submit" value="Log in">
+              <input class="bg-info" type="submit" id="log-in-submit" value="Log in">
               </form>
               <button class="text-info" >Create an account</button>          
           </div>
@@ -37,28 +37,50 @@
         
         <!-- alert -->
         <div id="alert-bck">
-          <div id="alert-log-in">
-            <p>There insn't such account!</p>
-            <p>Do you want to create an account?</p>
+          <div id="alert-log-in">            
+            <p>There insn't such account! <br> Do you want to create an account?</p>
             <div>
               <button id="alert-cancel">Cancel</button>
               <button id="alert-yes">Yes</button>
-            </div>
-            
+            </div>            
           </div>
+        </div>
 
+        <!-- log out -->
+        <div id="log-out-bck">
+          <div id="log-out-in">            
+            <p>Do you want to log out?</p>
+            <div>
+              <button id="log-out-cancel">Cancel</button>
+              <button id="log-out-yes">Yes</button>
+            </div>            
+          </div>
         </div>
 
         <!--  creat account-->
         <div id="sign-up-bck">
+          
           <div id="sign-up">
+            <i class="fas fa-times"></i>
             <form>
-              <input type="text" name="username" id="username">
+              <input type="text" name="first-name" id="first-name" placeholder="First Name:">
+              <input type="text" name="last-name" id="last-name" placeholder="Last Name:">
+              <input type="email" name="email" id="email" placeholder="Email:">
+              <input type="text" name="username" id="username" placeholder="Username:">
+              <input type="password" name="pass" id="pass" placeholder="Password:">
+              <input type="password" name="re-pass" id="re-pass" placeholder="Re-Password:">
+
               <input type="submit" value="Submit">
             </form>
           </div>
         </div>
         
+        <!-- alert wrong pass -->
+        <div id="pass-box">
+          <p>Passwords doesn't match!</p>
+          <button class="ok-btn">OK</button>
+        </div>
+
         <!-- Render wihlist -->
         <div id="wish-list">
           <h2>Wish list</h2>
@@ -77,7 +99,7 @@
             <div>
               <div id="log-in-box" class="user-account">
                 <i class="fas fa-user"></i>
-                <p>Log in</p>
+                <p>Log In</p>
               </div>
               
               <div class="user-account">
@@ -90,9 +112,9 @@
                 <p>Cart <span class="badge badge-info">4</span></p>
               </div>
 
-              <div id="sign-out-box" class="user-account" >
+              <div id="log-out-box" class="user-account" >
                 <i class="fas fa-sign-out-alt"></i>
-                <p>Sign Out</p>
+                <p>Log Out</p>
               </div>
 
             </div>

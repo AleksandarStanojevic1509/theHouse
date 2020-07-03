@@ -1,5 +1,5 @@
 import { renderStorePage, renederProductModal } from "./store.js";
-import {logInNewUser, signOutUser, checkLS, signUp} from "./users.js"
+import {logInNewUser, logOutBox, checkLS, signUp} from "./users.js"
 
 //DOM
 const toTopHendler = document.getElementById("to-top");
@@ -9,10 +9,12 @@ const loader = document.querySelector("#loader");
 const ftrCardHandler = document.querySelectorAll(".ftr-card a");
 const logInHandler = document.getElementById('log-in-box');
 // const logIn = document.getElementById('log-in-bck');
-const logInCloseHandler = document.querySelector('.fa-times');
+const closeHandler = document.querySelectorAll('.fa-times');
 const logInForm = document.querySelector('#log-in form')
-const signOut = document.getElementById('sign-out-box')
+const logOut = document.getElementById('log-out-box')
 const displayUserName = document.querySelector('#log-in-box p');
+const createAccHandler = document.querySelector('#log-in button');
+const okHandler = document.querySelectorAll('.ok-btn');
 
 
 checkLS(displayUserName)
@@ -25,8 +27,8 @@ logInForm.addEventListener('submit', (event)=>{
   document.getElementById('log-in-bck').style.display = 'none'
 })
 
-signOut.addEventListener('click', ()=>{
-  signOutUser(displayUserName)
+logOut.addEventListener('click', ()=>{
+  logOutBox(displayUserName)
 } )
 
 logInHandler.addEventListener('click', ()=>{
@@ -34,8 +36,15 @@ logInHandler.addEventListener('click', ()=>{
   document.getElementById('log-in-bck').style.display = 'grid'
 })
 
-logInCloseHandler.addEventListener('click', ()=>{
-  document.getElementById('log-in-bck').style.display = 'none'
+closeHandler.forEach((elem)=>{
+  elem.addEventListener('click', () =>{
+    if (document.getElementById('log-in-bck').style.display = 'grid'){
+      document.getElementById('log-in-bck').style.display = 'none';
+    }
+    if (document.getElementById('sign-up-bck').style.display = 'grid'){
+      document.getElementById('sign-up-bck').style.display = 'none';
+    }
+  })
 })
 
 storageHendler.forEach((event) => {
@@ -99,10 +108,25 @@ document.addEventListener("scroll", (event) => {
   }))
 
 
-// sign up 
+// sign up if log in fail
 document.querySelector('#sign-up form').addEventListener('submit', signUp)
+// sign up from create an acc
+// document.querySelector('#sign-up ').addEventListener('submit', signUp)
 
 
+
+// create account
+
+createAccHandler.addEventListener('click', ()=>{
+  document.getElementById('sign-up-bck').style.display = 'grid';
+  document.getElementById('log-in-bck').style.display = 'none';
+})
+
+okHandler.forEach(elem =>{
+  elem.addEventListener('click', ()=>{
+    document.getElementById('pass-box').style.display = 'none';
+  })
+})
 
 // db.collection('products').doc().set({
 //   dimension:{
