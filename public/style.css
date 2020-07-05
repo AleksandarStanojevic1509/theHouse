@@ -376,6 +376,14 @@ text-align: justify;
   border-radius: 5px;
   color: var(--primary-color);
   font-weight: 700;
+  background-color: white;
+  margin-bottom: 0;
+}
+#newsletter input[type='submit']{
+  border: 2px solid white;
+}
+#newsletter input[type='submit']:hover{
+ border: 2px solid white;
 }
 #newsletter div{
   display: grid;
