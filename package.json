@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/AleksandarStanojevic1509/theHouse/issues"
   },
-  "homepage": "https://github.com/AleksandarStanojevic1509/theHouse#readme"
+  "homepage": "https://github.com/AleksandarStanojevic1509/theHouse#readme",
+  "dependencies": {
+    "animate.css": "^4.1.0"
+  }
 }

@@ -67,6 +67,9 @@ export const logInNewUser = (displayUserName) => {
 
 export const logOutBox = (displayUserName)=>{
   document.getElementById('log-out-bck').style.display = 'grid';
+  document.getElementById('log-out-bck').style.animation = 'fadeInDown 0.5s'
+
+  
 
   document.getElementById('log-out-cancel').addEventListener('click', ()=>{
     document.getElementById('log-out-bck').style.display = 'none';
@@ -88,30 +91,48 @@ export const signUp = (event)=>{
   const lastName = document.getElementById('last-name').value;
   const userName = document.getElementById('username').value;
   const email = document.getElementById('email').value;
+  const pass = document.getElementById('pass').value;
+  const rePass = document.getElementById('re-pass').value;
   let password;
 
-  if (document.getElementById('pass').value === document.getElementById('re-pass').value){
-    password = document.getElementById('pass').value;
-    
-    db.collection('users').doc().set({
-      email:email,
-      firstName:firstName,
-      lastName:lastName,
-      password:password,
-      userName:userName
-    })
-    document.querySelector('#sign-up form').reset()
-    document.querySelector('#sign-up-bck').style.display = 'none'
+  if (firstName === '' && lastName == '' && userName == '' && email == '' && pass == '' && rePass == ''){
+    alert('Sva polja moraju biti popunjena')
   }
-  if (document.getElementById('pass').value !== document.getElementById('re-pass').value){
-    console.log('test')
-    document.getElementById('pass-box').style.display = 'flex'
-  }
-
-  console.log([password]);
-
+  else {
+    if ( pass === rePass){
+      password = document.getElementById('pass').value;
   
+      db.collection("users")
+      .where("userName", "==", `${userName}`)
+      .get()
+      .then((querySnapshot) => {
+        if (querySnapshot.size > 0) {
+            querySnapshot.docs.forEach((doc) => {  
+              document.getElementById('user-box').style.display = 'flex';  
+              document.getElementById('user-box').style.animation = 'fadeInDown 0.5s'
+        }) 
+        }
+        else {
+          db.collection('users').doc().set({
+            email:email,
+            firstName:firstName,
+            lastName:lastName,
+            password:password,
+            userName:userName
+          })
+          document.getElementById('account-success-box').style.display = 'flex';
+          document.getElementById('account-success-box').style.animation = 'fadeInDown 0.5s'
+          document.querySelector('#sign-up form').reset()
+          document.querySelector('#sign-up-bck').style.display = 'none';
+        }
+      })
+    }
+    if (document.getElementById('pass').value !== document.getElementById('re-pass').value){
+      console.log('test')
+      document.getElementById('pass-box').style.display = 'flex';
+      document.getElementById('pass-box').style.animation = 'fadeInDown 0.5s'
 
-
-
+    }
+  }
+  
 }

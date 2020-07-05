@@ -1,5 +1,5 @@
 import { renderStorePage, renederProductModal } from "./store.js";
-import {logInNewUser, logOutBox, checkLS, signUp} from "./users.js"
+import {logInNewUser, logOutBox, checkLS, signUp} from "./users.js";
 
 //DOM
 const toTopHendler = document.getElementById("to-top");
@@ -8,13 +8,14 @@ const mainBox = document.querySelector("main");
 const loader = document.querySelector("#loader");
 const ftrCardHandler = document.querySelectorAll(".ftr-card a");
 const logInHandler = document.getElementById('log-in-box');
-// const logIn = document.getElementById('log-in-bck');
 const closeHandler = document.querySelectorAll('.fa-times');
-const logInForm = document.querySelector('#log-in form')
-const logOut = document.getElementById('log-out-box')
+const logInForm = document.querySelector('#log-in form');
+const logOut = document.getElementById('log-out-box');
 const displayUserName = document.querySelector('#log-in-box p');
 const createAccHandler = document.querySelector('#log-in button');
 const okHandler = document.querySelectorAll('.ok-btn');
+const okLoginHandler = document.querySelector('#alert-login-box button');
+
 
 
 checkLS(displayUserName)
@@ -28,28 +29,38 @@ logInForm.addEventListener('submit', (event)=>{
 })
 
 logOut.addEventListener('click', ()=>{
+  window.scrollTo(0, 0); 
   logOutBox(displayUserName)
 } )
 
 logInHandler.addEventListener('click', ()=>{
   window.scrollTo(0, 0); 
   document.getElementById('log-in-bck').style.display = 'grid'
+  document.getElementById('log-in-bck').style.animation = 'fadeInDown 0.5s'
+
 })
 
 closeHandler.forEach((elem)=>{
   elem.addEventListener('click', () =>{
     if (document.getElementById('log-in-bck').style.display = 'grid'){
-      document.getElementById('log-in-bck').style.display = 'none';
+      document.getElementById('log-in-bck').style.animation = 'fadeOutDown 1s'
+      setTimeout(()=>{
+        document.getElementById('log-in-bck').style.display = 'none';
+      },501)
+
     }
     if (document.getElementById('sign-up-bck').style.display = 'grid'){
-      document.getElementById('sign-up-bck').style.display = 'none';
+      document.getElementById('sign-up-bck').style.animation = 'fadeOutDown 1s'
+      setTimeout(()=>{        
+        document.getElementById('sign-up-bck').style.display = 'none';
+      },501)
+
     }
   })
 })
 
 storageHendler.forEach((event) => {
   event.addEventListener("click", (e) => {
-    // document.getElementById('store-title').innerHTML = ''
     window.scrollTo(0, 0); 
     renderStorePage(loader, mainBox);
   });
@@ -77,6 +88,7 @@ document.addEventListener("scroll", (event) => {
     document.body.scrollTop > 120 ||
     document.documentElement.scrollTop > 120
   ) {
+    toTopHendler.style.animation = "backInUp 1s";
     toTopHendler.style.display = "block";
   } else {
     toTopHendler.style.display = "none";
@@ -87,22 +99,26 @@ document.addEventListener("scroll", (event) => {
   mainBox.addEventListener('click', (event =>{
   
     if (event.target.outerHTML === '<i class="fas fa-shopping-bag"></i>'){
-      // if(){
-        // proveri da li je neko logovan ako je localstore prazan izbaci log in
-      // }
-      // else {
-        // ako je loginovan dodaj u korpu
-      // }
-      console.log('KORPA')
+      if(localStorage.getItem('user') === null || localStorage.getItem('user') === ''){
+        // console.log('nije')
+        document.getElementById('alert-login-box').style.display = 'flex';  
+        document.getElementById('alert-login-box').style.animation = 'fadeInDown 0.5s';
+      }
+      else {
+        console.log('logovan')
+
+      }
     }
     if (event.target.outerHTML === '<i class="fas fa-heart"></i>'){
-       // if(){
-        // proveri da li je neko logovan ako je localstore prazan izbaci log in
-      // }
-      // else {
-        // ako je loginovan dodaj u litu zelja
-      // }
-      console.log('LISTA ZELAJ')
+      if(localStorage.getItem('user') === null || localStorage.getItem('user') === ''){
+        // console.log('nije')
+        document.getElementById('alert-login-box').style.display = 'flex';  
+        document.getElementById('alert-login-box').style.animation = 'fadeInDown 0.5s';
+      }
+      else {
+        console.log('logovan')
+
+      }
     }
     
   }))
@@ -110,22 +126,29 @@ document.addEventListener("scroll", (event) => {
 
 // sign up if log in fail
 document.querySelector('#sign-up form').addEventListener('submit', signUp)
-// sign up from create an acc
-// document.querySelector('#sign-up ').addEventListener('submit', signUp)
-
 
 
 // create account
 
 createAccHandler.addEventListener('click', ()=>{
   document.getElementById('sign-up-bck').style.display = 'grid';
+  document.getElementById('sign-up-bck').style.animation = 'fadeInDown 0.5s'
+
   document.getElementById('log-in-bck').style.display = 'none';
 })
 
 okHandler.forEach(elem =>{
   elem.addEventListener('click', ()=>{
     document.getElementById('pass-box').style.display = 'none';
+    document.getElementById('user-box').style.display = 'none';
+    document.getElementById('alert-login-box').style.display = 'none';
+    document.getElementById('account-success-box').style.display = 'none';
   })
+})
+
+okLoginHandler.addEventListener('click', ()=>{
+  document.getElementById('log-in-bck').style.display = 'flex';
+  document.getElementById('log-in-bck').style.animation = 'fadeInDown 0.5s'
 })
 
 // db.collection('products').doc().set({

@@ -162,7 +162,7 @@ main {
   justify-content: space-evenly;
   width: 100%;
 }
-#alert-log-in button, #log-out-in button, #pass-box button {
+#alert-log-in button, #log-out-in button, #pass-box button, #user-box button, #alert-login-box button, #account-success-box button {
   background: none;
   background-color: var(--primary-color);
   border: none;
@@ -210,7 +210,7 @@ cursor: pointer;
   -moz-box-shadow: 11px 11px 5px -6px rgba(0,0,0,0.2);
   box-shadow: 11px 11px 5px -6px rgba(0,0,0,0.2)
 }
-#pass-box{
+#pass-box, #user-box, #alert-login-box, #account-success-box{
   position: absolute;
   left: 0;
   right: 0;
